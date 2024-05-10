@@ -4,7 +4,7 @@ const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const param_URL = params.get('url');
 const proxyUrl = 'https://corsproxy.io/?'+param_URL;
-fetch(proxyUrl + apiUrl)
+fetch(proxyUrl)
   .then(response => {
     if (!response.ok) {
       alert('Network response was not ok');
