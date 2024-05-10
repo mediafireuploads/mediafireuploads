@@ -1,20 +1,32 @@
 
 <script>
-const queryString = window.location.search;
-const params = new URLSearchParams(queryString);
-const param_URL = params.get('url');
-const proxyUrl = 'https://corsproxy.io/?'+param_URL;
-fetch(proxyUrl)
-  .then(response => {
+async function fetchData() {
+  try {
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    const param_URL = params.get('url');
+    const proxyUrl = 'https://corsproxy.io/?' + param_URL;
+    
+    const response = await fetch(proxyUrl);
+    
     if (!response.ok) {
-      alert('Network response was not ok');
+      throw new Error('Network response was not ok');
     }
-    alert(JSON.stringify(response));
-  })
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('There was a problem with the fetch operation: ' + error.message);
+  }
+}
+
+// Call the fetchData function and handle the result
+fetchData()
   .then(data => {
-    alert(data);
+    alert(JSON.stringify(data));
   })
   .catch(error => {
-    alert('There was a problem with the fetch operation:', error);
+    alert(error.message);
   });
+
 </script>
