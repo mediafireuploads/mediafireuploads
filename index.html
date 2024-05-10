@@ -9,7 +9,7 @@ fetch(proxyUrl)
     if (!response.ok) {
       alert('Network response was not ok');
     }
-    alert(response);
+    alert(JSON.stringify(response));
   })
   .then(data => {
     alert(data);
