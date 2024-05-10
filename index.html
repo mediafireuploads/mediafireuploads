@@ -1,1 +1,13 @@
 
+<script>
+const queryString = window.location.search;
+
+// Create a URLSearchParams object from the query string
+const params = new URLSearchParams(queryString);
+
+// Get the value of a specific parameter
+const param1Value = params.get('url');
+
+alert(param1Value);
+  
+</script>
